@@ -1,0 +1,196 @@
+body {
+  
+    font-family: 'Montserrat', sans-serif; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #fce4ec, #e0f2f7);
+    color: #4a4a4a;
+    text-align: center;
+    overflow: hidden; /* Dòng này sẽ ẩn thanh cuộn */
+    position: relative;
+
+    font-family: 'Montserrat', sans-serif; /* Phông chữ hiện đại, dễ thương */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #fce4ec, #e0f2f7); /* Gradient màu pastel */
+    color: #4a4a4a;
+    text-align: center;
+    overflow: hidden; /* Quan trọng để các hiệu ứng không tạo scrollbar */
+    position: relative;
+}
+
+.main-wrapper {
+    position: relative;
+    z-index: 10; /* Đảm bảo nội dung chính nằm trên các hiệu ứng */
+    border: 5px solid transparent; /* Khởi tạo border trong suốt */
+    padding: 15px;
+    border-radius: 25px;
+    background-clip: padding-box;
+    animation: borderAnimation 8s infinite alternate, fadeIn 2s ease-in-out;
+}
+
+/* Hiệu ứng border nhấp nháy màu */
+@keyframes borderAnimation {
+    0% { border-color: #ff9aa2; }
+    25% { border-color: #ffb7b2; }
+    50% { border-color: #ffdac1; }
+    75% { border-color: #b5ead7; }
+    100% { border-color: #c7ceea; }
+}
+
+.container {
+    padding: 30px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Nền trắng hơi trong suốt */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Bóng đổ mềm mại */
+    max-width: 600px;
+    width: 90%;
+    position: relative; /* Cho các hiệu ứng nhỏ bên trong */
+}
+
+.main-heading {
+    font-family: 'Pacifico', cursive; /* Phông chữ viết tay dễ thương */
+    font-size: 3.5em;
+    color: #e88dcd; /* Màu chữ hồng tím nổi bật */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    animation: bounceIn 1.5s ease-out; /* Hiệu ứng tiêu đề nảy lên */
+}
+
+@keyframes bounceIn {
+    0%, 20%, 40%, 60%, 80%, 100% {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        transform: scale3d(.3, .3, .3);
+    }
+    20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+    40% {
+        transform: scale3d(.9, .9, .9);
+    }
+    60% {
+        opacity: 1;
+        transform: scale3d(1.03, 1.03, 1.03);
+    }
+    80% {
+        transform: scale3d(.97, .97, .97);
+    }
+    100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+
+.image-wrapper img {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 7px solid #fff; /* Viền ảnh dày hơn */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    margin: 25px 0;
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+    transition: transform 0.3s ease-in-out; /* Hiệu ứng hover */
+}
+
+.image-wrapper img:hover {
+    transform: scale(1.05) rotate(3deg); /* Phóng to và xoay nhẹ khi hover */
+}
+
+.message {
+    font-size: 1.3em;
+    line-height: 1.8;
+    color: #666;
+    margin-top: 25px;
+    font-weight: 500;
+}
+
+/* Hiệu ứng Fade In chung cho container */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Confetti Styles --- */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ffeb3b; /* Màu vàng */
+    border-radius: 50%;
+    opacity: 0;
+    animation: fall 5s linear infinite;
+    z-index: 1;
+}
+
+/* Các màu confetti khác */
+.confetti:nth-child(2n) { background-color: #ff4081; } /* Hồng */
+.confetti:nth-child(3n) { background-color: #4fc3f7; } /* Xanh dương */
+.confetti:nth-child(4n) { background-color: #a7ffeb; } /* Xanh ngọc */
+
+@keyframes fall {
+    0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* --- Balloon Styles --- */
+.balloon {
+    position: absolute;
+    width: 80px;
+    height: 100px;
+    background-color: #ff9aa2; /* Màu hồng */
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    bottom: -150px; /* Bắt đầu từ dưới màn hình */
+    opacity: 0;
+    animation: floatUp 15s linear infinite;
+    z-index: 5; /* Nằm dưới container chính */
+}
+
+.balloon::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.2);
+    top: 98%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Các màu bóng bay khác */
+.balloon:nth-child(2n) { background-color: #b5ead7; } /* Xanh lá nhạt */
+.balloon:nth-child(3n) { background-color: #c7ceea; } /* Tím nhạt */
+.balloon:nth-child(4n) { background-color: #ffdac1; } /* Cam đào */
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* Import Google Fonts (đặt ở đầu file CSS) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Pacifico&display=swap');
+/* Đảm bảo ảnh không bị tràn */
+.image-wrapper img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Đảm bảo toàn bộ nội dung chính không bị tràn */
+.container {
+    max-width: 90%; /* Giới hạn tối đa 90% chiều rộng màn hình */
+    box-sizing: border-box; /* Tính cả padding và border vào kích thước */
+}
+
+/* Áp dụng cho các phần tử khác nếu cần */
+* {
+    box-sizing: border-box;
+}
